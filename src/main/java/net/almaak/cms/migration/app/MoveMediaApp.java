@@ -13,13 +13,15 @@ import net.almaak.cms.migration.settings.MigrationSettings;
 public class MoveMediaApp {
 
     /**
-     * [0] type of migration - 0 (DB), (1) images etc
+     * [0] type of migration - db, images
+     * [1] from where - fs, db
      *
      */
 
     public static void main(String[] args){
 
         String migrationType = args[0];
+
         MigrationSettings migrationSettings = null;
         switch (migrationType){
             case "image":
@@ -35,8 +37,26 @@ public class MoveMediaApp {
                 break;
         }
 
-        // evaluate further user input parameters and store them in setting object
+        // evaluate further user input parameters and store them in the settings object
 
+        String typeOfResource = args[1];    // db, file system etc.
+        switch (typeOfResource){
+            case "fs":
+                if (migrationSettings != null) {
+                    if(migrationSettings instanceof MediaMigrationSettings) {
+                       ((MediaMigrationSettings) migrationSettings).setFromFileSystem(true);
+                    }
+                }
+                break;
+            case "db":
+                // output: 'not yet implemented'
+                System.exit(0);
+                break;
+            default:
+                // output: 'unknown type of resource'
+                System.exit(0);
+                break;
+        }
 
     }
 
