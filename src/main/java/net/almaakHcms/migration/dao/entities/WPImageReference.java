@@ -1,4 +1,4 @@
-package net.almaak.cms.migration.dao;
+package net.almaak.cms.migration.dao.entities;
 
 /**
  * Representation of an WordPress image reference in a WordPress Article
@@ -7,6 +7,5 @@ package net.almaak.cms.migration.dao;
  * @version %I%, %G%
  *
  */
-
 public class WPImageReference {
 }

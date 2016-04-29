@@ -18,16 +18,39 @@ public class MoveMediaApp {
      *
      */
 
+    /**
+     * The method converts user's string input parameters to integer values
+     *
+     * @param strParam app argument
+     * @return int value
+     */
+    private static int convertUserInputParametersToInt(final String strParam) {
+        if(strParam.equals("images") || strParam.equals("fs")) {
+            return 0;
+        }
+
+        if(strParam.equals("db")) {
+            return 1;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Entry method
+     *
+     * @param args user's input parameters
+     */
     public static void main(String[] args){
 
         String migrationType = args[0];
 
         MigrationSettings migrationSettings = null;
-        switch (migrationType){
-            case "image":
+        switch (convertUserInputParametersToInt(migrationType)){
+            case 0:
                 migrationSettings = new MediaMigrationSettings();
                 break;
-            case "db":
+            case 1:
                 // output: 'not yet implemented'
                 System.exit(0);
                 break;
@@ -40,15 +63,15 @@ public class MoveMediaApp {
         // evaluate further user input parameters and store them in the settings object
 
         String typeOfResource = args[1];    // db, file system etc.
-        switch (typeOfResource){
-            case "fs":
+        switch (convertUserInputParametersToInt(typeOfResource)){
+            case 0:
                 if (migrationSettings != null) {
                     if(migrationSettings instanceof MediaMigrationSettings) {
                        ((MediaMigrationSettings) migrationSettings).setFromFileSystem(true);
                     }
                 }
                 break;
-            case "db":
+            case 1:
                 // output: 'not yet implemented'
                 System.exit(0);
                 break;
@@ -57,7 +80,5 @@ public class MoveMediaApp {
                 System.exit(0);
                 break;
         }
-
     }
-
 }

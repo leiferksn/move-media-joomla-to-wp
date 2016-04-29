@@ -1,4 +1,4 @@
-package net.almaak.cms.migration.dao;
+package net.almaak.cms.migration.dao.entities;
 
 import java.util.List;
 

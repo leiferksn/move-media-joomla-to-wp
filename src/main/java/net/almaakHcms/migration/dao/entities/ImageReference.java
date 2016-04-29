@@ -1,4 +1,4 @@
-package net.almaak.cms.migration.dao;
+package net.almaak.cms.migration.dao.entities;
 
 /**
  * Represents an image reference in article
