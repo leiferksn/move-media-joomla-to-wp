@@ -1,8 +1,7 @@
 package net.almaak.cms.migration.service;
 
-import net.almaak.cms.migration.dao.Image;
+import net.almaak.cms.migration.dao.entities.Image;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ import java.util.List;
 
 public interface ImageLoaderService {
 
-    Image loadImageFromFileName(final String fileName);
+    Image loadImageByFileNameFromFTP(final String fileName, String remoteRessource);
     List<Image> loadImagesFromFileSystemPath(final String fsPath, long limit);    // idk if it works that way for directories
 
 }

@@ -20,7 +20,6 @@ public class FtpUtility {
     private String ftpResource = null;
     private static FtpUtility instance = null;
     private FTPClient ftpClient = null;
-    private static final int READ_TIMEOUT = 60000;
     private static final int CONNECTION_TIMEOUT = 3000;
 
     public static FtpUtility getInstance(){
