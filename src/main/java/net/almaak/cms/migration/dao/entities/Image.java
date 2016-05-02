@@ -12,7 +12,7 @@ import java.util.List;
 public class Image extends Media {
 
     private byte[] imageData;
-    private List<ImageReference> referenceToArticle;
+    private List<ImageReference> referencesToArticle;
 
 
 }
