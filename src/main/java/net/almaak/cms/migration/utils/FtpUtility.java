@@ -1,5 +1,6 @@
 package net.almaak.cms.migration.utils;
 
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import sun.net.ftp.FtpProtocolException;
@@ -7,7 +8,6 @@ import sun.net.ftp.FtpProtocolException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * It's a FTP service class that handles FTP operations
@@ -54,8 +54,6 @@ public class FtpUtility {
                     fileList.add(ftpFile.getName());
                 }
             }
-        } catch (FtpProtocolException fpe) {
-            // TODO do some exception handling here
         } catch (IOException ioe) {
             // TODO do some exception handling here
         }

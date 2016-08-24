@@ -3,7 +3,7 @@ package net.almaak.cms.migration.settings;
 import java.net.URL;
 
 /**
- * Holds sepcific settings for migration of media resources - images, videos etc.
+ * Holds specific settings for migration of media resources - images, videos etc.
  *
  * @author leiferksn
  * @version %I%, %G%

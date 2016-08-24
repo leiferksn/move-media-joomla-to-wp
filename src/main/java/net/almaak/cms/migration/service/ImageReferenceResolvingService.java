@@ -9,5 +9,4 @@ package net.almaak.cms.migration.service;
  */
 public interface ImageReferenceResolvingService {
 
-
 }
