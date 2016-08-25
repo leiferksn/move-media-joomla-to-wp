@@ -2,11 +2,9 @@ package net.almaak.cms.migration.dao;
 
 
 import net.almaak.cms.migration.dao.entities.mapper.ImageReferenceMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,7 +12,7 @@ import java.util.List;
  * @version %I%, %G%
  *
  */
-public class ImageReferenceDAOImpl implements ImageReferenceDAO {
+public class ArticleDAOImpl implements ArticleDAO {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -23,8 +21,8 @@ public class ImageReferenceDAOImpl implements ImageReferenceDAO {
     @Override
     public List loadAll() {
         RowMapper imageReferenceRowMapper = new ImageReferenceMapper();
-        List imageReferences = jdbcTemplate.query(SELECT_ALL, imageReferenceRowMapper);
-        return imageReferences;
+        List articles = jdbcTemplate.query(SELECT_ALL, imageReferenceRowMapper);
+        return articles;
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

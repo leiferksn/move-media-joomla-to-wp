@@ -9,7 +9,7 @@ import java.util.List;
  * @version %I%, %G%
  *
  */
-public class ImageReference {
+public class Article {
 
     private String articleAlias;
     private String articleName;

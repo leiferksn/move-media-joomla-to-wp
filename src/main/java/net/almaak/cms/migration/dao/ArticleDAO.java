@@ -7,7 +7,7 @@ import java.util.List;
  * @author leiferksn
  * @version %I%, %G%
  */
-public interface ImageReferenceDAO {
+public interface ArticleDAO {
 
     List loadAll();
 

@@ -1,5 +1,7 @@
 package net.almaak.cms.migration.dao.entities;
 
+import net.almaak.cms.migration.dao.entities.mapper.ImageRole;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +14,25 @@ import java.util.List;
  */
 public class Image extends Media {
 
+    private String imagePath;
+    private String imageCaption;
+    private String imageAlt;
     private byte[] imageData;
-    private List<ImageReference> referencesToArticle;
-    private String imageRole;
+    private ImageRole imageRole;
+
+
+    public Image (String aImagePath,
+                  String aImageCaption,
+                  String aImageAlt,
+                  ImageRole aIMagerole,
+                  byte[] aImageData) {
+        this.imagePath = aImagePath;
+        this.imageCaption = aImageCaption;
+        this.imageAlt = aImageAlt;
+        this.imageRole = aIMagerole;
+        this.imageData = aImageData;
+
+    }
 
     public byte[] getImageData() {
         return imageData;
@@ -24,26 +42,37 @@ public class Image extends Media {
         this.imageData = imageData;
     }
 
-    public List<ImageReference> getReferencesToArticle() {
-        return referencesToArticle;
-    }
 
-    public void setReferencesToArticle(List<ImageReference> referencesToArticle) {
-        this.referencesToArticle = referencesToArticle;
-    }
-
-    public String getImageRole() {
+    public ImageRole getImageRole() {
         return imageRole;
     }
 
-    public void setImageRole(String imageRole) {
+    public void setImageRole(ImageRole imageRole) {
         this.imageRole = imageRole;
     }
 
-    public void addImageReference(final ImageReference imgReference) {
-        if(referencesToArticle == null ) {
-            referencesToArticle = new ArrayList<ImageReference>();
-        }
-        referencesToArticle.add(imgReference);
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImageCaption() {
+        return imageCaption;
+    }
+
+    public void setImageCaption(String imageCaption) {
+        this.imageCaption = imageCaption;
+    }
+
+    public String getImageAlt() {
+        return imageAlt;
+    }
+
+    public void setImageAlt(String imageAlt) {
+        this.imageAlt = imageAlt;
     }
 }

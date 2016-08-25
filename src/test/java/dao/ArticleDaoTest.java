@@ -1,12 +1,11 @@
 package dao;
 
-import net.almaak.cms.migration.dao.ImageReferenceDAO;
-import net.almaak.cms.migration.dao.entities.ImageReference;
+import net.almaak.cms.migration.dao.ArticleDAO;
+import net.almaak.cms.migration.dao.entities.Article;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,16 +14,16 @@ import java.util.List;
 /**
  * Created by leiferksn on 6/5/16.
  */
-public class ImageReferenceDaoTest {
+public class ArticleDaoTest {
 
     private ApplicationContext applicationContext = null;
 
-    private ImageReferenceDAO imageReferenceDAO;
+    private ArticleDAO articleDAO;
 
     @Before
     public void setUp(){
         applicationContext = new ClassPathXmlApplicationContext("/applicationContext-test.xml");
-        imageReferenceDAO = (ImageReferenceDAO) applicationContext.getBean("imageReferenceDao");
+        articleDAO = (ArticleDAO) applicationContext.getBean("imageReferenceDao");
     }
 
     @After
@@ -34,11 +33,11 @@ public class ImageReferenceDaoTest {
 
     @Test
     public void shouldReturnAllImageReferences(){
-        List<ImageReference> imgRefs =  imageReferenceDAO.loadAll();
+        List<Article> imgRefs =  articleDAO.loadAll();
         Assert.assertTrue(imgRefs != null);
         Assert.assertTrue(imgRefs.size() > 0);
         boolean check = false;
-        for (ImageReference ref : imgRefs) {
+        for (Article ref : imgRefs) {
             if (ref.getImages().size() > 0) {
                 check = true;
             }

@@ -17,4 +17,5 @@ dependencies {
     compile group:'org.springframework', name:'spring-jdbc', version:'4.2.5.RELEASE'
     compile group:'org.springframework', name:'spring-context', version:'4.2.5.RELEASE'
     compile group:'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.7.0'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
 }

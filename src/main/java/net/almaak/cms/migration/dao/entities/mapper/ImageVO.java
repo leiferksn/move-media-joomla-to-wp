@@ -1,5 +1,6 @@
 package net.almaak.cms.migration.dao.entities.mapper;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -23,20 +24,12 @@ public class ImageVO {
     @JsonProperty("image_intro")
     private String imageIntro;
 
-    @JsonProperty("float_intro")
-    private String floatIntro;
-
     @JsonProperty("image_intro_alt")
     private String imageIntroAlt;
 
     @JsonProperty("image_intro_caption")
     private String imageIntroCaption;
 
-    @JsonProperty("image_fulltext")
-    private String imageFullText;
-
-    @JsonProperty("float_fulltext")
-    private String floatFulltext;
 
     @JsonProperty("image_fulltext_alt")
     private String imageFulltextAlt;
@@ -44,6 +37,20 @@ public class ImageVO {
     @JsonProperty("image_fulltext_caption")
     private String imageFulltextCaption;
 
+    @JsonProperty("image_fulltext")
+    private String imageFullText;
+
+    /*  === just ignore the float settings for both types of images for now  === */
+
+    @JsonProperty("float_intro")
+    private String floatIntro;
+
+
+    @JsonProperty("float_fulltext")
+    private String floatFulltext;
+
+
+    @JsonIgnore
     public String getFloatIntro() {
         return floatIntro;
     }
@@ -76,6 +83,7 @@ public class ImageVO {
         this.imageFullText = imageFullText;
     }
 
+    @JsonIgnore
     public String getFloatFulltext() {
         return floatFulltext;
     }
