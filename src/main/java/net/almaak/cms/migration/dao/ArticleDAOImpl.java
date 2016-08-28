@@ -20,8 +20,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 
     @Override
     public List loadAll() {
-        RowMapper imageReferenceRowMapper = new ArticleMapper();
-        List articles = jdbcTemplate.query(SELECT_ALL, imageReferenceRowMapper);
+        RowMapper articleRowMapper = new ArticleMapper();
+        List articles = jdbcTemplate.query(SELECT_ALL, articleRowMapper);
         return articles;
     }
 

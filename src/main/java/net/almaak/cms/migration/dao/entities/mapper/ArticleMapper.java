@@ -21,7 +21,7 @@ public class ArticleMapper implements RowMapper {
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         Article article = new Article();
         try {
-            article.setImages(convertImagesJSONToList(rs.getString("images"), article));
+            article.setImages(convertImagesJSONToList(rs.getString("images")));
             article.setArticleAlias(rs.getString("alias"));
             article.setArticleId(rs.getLong("id"));
             article.setArticleName(rs.getString("title"));
@@ -32,7 +32,7 @@ public class ArticleMapper implements RowMapper {
         return article;
     }
 
-    private List<Image> convertImagesJSONToList(String imagesJSON, Article imgReference) throws IOException{
+    private List<Image> convertImagesJSONToList(String imagesJSON) throws IOException {
         List<Image> imageList = mapImageVOToImage(new ObjectMapper().readValue(imagesJSON, ImageVO.class));
         return imageList;
     }

@@ -24,12 +24,12 @@ public class Image extends Media {
     public Image (String aImagePath,
                   String aImageCaption,
                   String aImageAlt,
-                  ImageRole aIMagerole,
+                  ImageRole aImageRole,
                   byte[] aImageData) {
         this.imagePath = aImagePath;
         this.imageCaption = aImageCaption;
         this.imageAlt = aImageAlt;
-        this.imageRole = aIMagerole;
+        this.imageRole = aImageRole;
         this.imageData = aImageData;
 
     }
