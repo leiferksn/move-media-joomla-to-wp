@@ -1,7 +1,7 @@
 package net.almaak.cms.migration.dao;
 
 
-import net.almaak.cms.migration.dao.entities.mapper.ImageReferenceMapper;
+import net.almaak.cms.migration.dao.entities.mapper.ArticleMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -20,7 +20,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 
     @Override
     public List loadAll() {
-        RowMapper imageReferenceRowMapper = new ImageReferenceMapper();
+        RowMapper imageReferenceRowMapper = new ArticleMapper();
         List articles = jdbcTemplate.query(SELECT_ALL, imageReferenceRowMapper);
         return articles;
     }

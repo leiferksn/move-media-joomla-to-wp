@@ -33,16 +33,39 @@ public class ArticleDaoTest {
 
     @Test
     public void shouldReturnAllImageReferences(){
-        List<Article> imgRefs =  articleDAO.loadAll();
-        Assert.assertTrue(imgRefs != null);
-        Assert.assertTrue(imgRefs.size() > 0);
-        boolean check = false;
-        for (Article ref : imgRefs) {
-            if (ref.getImages().size() > 0) {
-                check = true;
+        List<Article> articles =  articleDAO.loadAll();
+        Assert.assertTrue(articles != null);
+        Assert.assertTrue(articles.size() > 0);
+        boolean checkImagesExist = false;
+        boolean checkTitleExists = true;
+        boolean checkAliasExists = true;
+        boolean checkIdExists = true;
+        for (Article article : articles) {
+            checkAliasExists = checkMemberValidity(article.getArticleAlias());
+            if(!checkAliasExists) {
+                break;
+            }
+
+            checkTitleExists =  checkMemberValidity(article.getArticleName());
+            if (!checkTitleExists) {
+                break;
+            }
+
+            if (article.getImages().size() > 0) {
+                checkImagesExist = true;
+                break;
             }
         }
-        Assert.assertTrue(check);
+        Assert.assertTrue(checkAliasExists);
+        Assert.assertTrue(checkTitleExists);
+        Assert.assertTrue(checkImagesExist);
+    }
+
+    private boolean checkMemberValidity(final String memberValue) {
+        if (memberValue == null || (memberValue != null && memberValue.length() <= 0)) {
+            return false;
+        }
+        return true;
     }
 
 }

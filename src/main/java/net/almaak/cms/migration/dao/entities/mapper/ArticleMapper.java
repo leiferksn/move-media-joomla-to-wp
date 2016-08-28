@@ -13,15 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ImageReferenceMapper implements RowMapper {
+public class ArticleMapper implements RowMapper {
 
-    private static Logger log = Logger.getLogger(ImageReferenceMapper.class);
+    private static Logger log = Logger.getLogger(ArticleMapper.class);
 
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         Article article = new Article();
         try {
             article.setImages(convertImagesJSONToList(rs.getString("images"), article));
+            article.setArticleAlias(rs.getString("alias"));
+            article.setArticleId(rs.getLong("id"));
+            article.setArticleName(rs.getString("title"));
         } catch (IOException ioe) {
             log.error("Database result can't be mapped to Article");
             throw new SQLException(ioe);
