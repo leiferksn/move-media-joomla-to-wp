@@ -14,6 +14,9 @@ public class Article {
     private String articleAlias;
     private String articleName;
     private Long articleId;
+    private String createdOn;
+    private String modifiedOn;
+    private String createdBy;
     private List<Image> images;
 
     public void setArticleAlias(String articleAlias) {
@@ -34,6 +37,30 @@ public class Article {
 
     public String getArticleAlias() {
         return articleAlias;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public void setModifiedOn(String modifiedOn) {
+        this.modifiedOn = modifiedOn;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getArticleName() {

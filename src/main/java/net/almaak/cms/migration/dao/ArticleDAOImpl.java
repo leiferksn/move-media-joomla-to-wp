@@ -16,7 +16,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private static final String SELECT_ALL = "select id, alias, title, images from jos3_content";
+    private static final String SELECT_ALL = "select id, alias, title, images, created, modified, created_by from jos3_content";
 
     @Override
     public List loadAll() {

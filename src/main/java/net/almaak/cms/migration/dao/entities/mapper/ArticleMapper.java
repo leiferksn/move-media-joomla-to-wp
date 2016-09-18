@@ -25,6 +25,9 @@ public class ArticleMapper implements RowMapper {
             article.setArticleAlias(rs.getString("alias"));
             article.setArticleId(rs.getLong("id"));
             article.setArticleName(rs.getString("title"));
+            article.setCreatedOn(rs.getString("created"));
+            article.setModifiedOn(rs.getString("modified"));
+            article.setCreatedBy(rs.getString("created_by"));
         } catch (IOException ioe) {
             log.error("Database result can't be mapped to Article");
             throw new SQLException(ioe);

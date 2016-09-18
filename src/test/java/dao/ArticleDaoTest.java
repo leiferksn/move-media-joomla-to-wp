@@ -41,7 +41,6 @@ public class ArticleDaoTest {
         boolean checkAliasExists = true;
         boolean checkIdExists = true;
         for (Article article : articles) {
-
             checkIdExists = checkMemberValidity(article.getArticleId().toString());
             if(!checkIdExists){
                 break;
