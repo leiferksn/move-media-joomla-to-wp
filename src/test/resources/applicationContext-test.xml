@@ -7,7 +7,7 @@
 
     <beans:bean name="readDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <beans:property name="url" value="jdbc:mysql://localhost:8889/mydb"/>
+        <beans:property name="url" value="jdbc:mysql://localhost:8889/mydb?zeroDateTimeBehavior=convertToNull"/>
         <beans:property name="username" value="mydbuser"/>
         <beans:property name="password" value="mydbpwd"/>
     </beans:bean>
@@ -16,7 +16,7 @@
         <beans:property name="dataSource" ref="readDataSource"/>
     </beans:bean>
 
-    <beans:bean name="imageReferenceDao" class="net.almaak.cms.migration.dao.ImageReferenceDAOImpl">
+    <beans:bean name="imageReferenceDao" class="net.almaak.cms.migration.dao.ArticleDAOImpl">
         <beans:property name="jdbcTemplate" ref="jdbcTemplate"/>
     </beans:bean>
 
