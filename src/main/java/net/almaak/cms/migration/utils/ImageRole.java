@@ -1,4 +1,4 @@
-package net.almaak.cms.migration.dao.entities.mapper;
+package net.almaak.cms.migration.utils;
 
 /**
  * Created by leiferksn on 8/25/16.

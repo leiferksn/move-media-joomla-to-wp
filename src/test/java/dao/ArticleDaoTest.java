@@ -2,6 +2,7 @@ package dao;
 
 import net.almaak.cms.migration.dao.ArticleDAO;
 import net.almaak.cms.migration.dao.entities.Article;
+import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,14 +34,14 @@ public class ArticleDaoTest {
 
     @Test
     public void shouldReturnAllImageReferences(){
-        List<Article> articles =  articleDAO.loadAll();
+        List<ArticleVO> articles =  articleDAO.loadAll();
         Assert.assertTrue(articles != null);
         Assert.assertTrue(articles.size() > 0);
         boolean checkImagesExist = false;
         boolean checkTitleExists = true;
         boolean checkAliasExists = true;
         boolean checkIdExists = true;
-        for (Article article : articles) {
+        for (ArticleVO article : articles) {
             checkIdExists = checkMemberValidity(article.getArticleId().toString());
             if(!checkIdExists){
                 break;
@@ -56,7 +57,7 @@ public class ArticleDaoTest {
                 break;
             }
 
-            if (article.getImages().size() > 0) {
+            if (article.getImagesJSON().length() > 0) {
                 checkImagesExist = true;
                 break;
             }

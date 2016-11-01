@@ -1,9 +1,6 @@
 package net.almaak.cms.migration.dao.entities;
 
-import net.almaak.cms.migration.dao.entities.mapper.ImageRole;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.almaak.cms.migration.utils.ImageRole;
 
 /**
  * Represents an image resource

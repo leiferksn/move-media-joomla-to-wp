@@ -1,4 +1,4 @@
-package net.almaak.cms.migration.dao.entities.mapper;
+package net.almaak.cms.migration.dao.entities.mapper.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,8 +1,10 @@
 package net.almaak.cms.migration.dao.entities.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.almaak.cms.migration.dao.entities.Article;
 import net.almaak.cms.migration.dao.entities.Image;
+import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
+import net.almaak.cms.migration.dao.entities.mapper.vo.ImageVO;
+import net.almaak.cms.migration.utils.ImageRole;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -19,19 +21,15 @@ public class ArticleMapper implements RowMapper {
 
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Article article = new Article();
-        try {
-            article.setImages(convertImagesJSONToList(rs.getString("images")));
-            article.setArticleAlias(rs.getString("alias"));
-            article.setArticleId(rs.getLong("id"));
-            article.setArticleName(rs.getString("title"));
-            article.setCreatedOn(rs.getString("created"));
-            article.setModifiedOn(rs.getString("modified"));
-            article.setCreatedBy(rs.getString("created_by"));
-        } catch (IOException ioe) {
-            log.error("Database result can't be mapped to Article");
-            throw new SQLException(ioe);
-        }
+        ArticleVO article = new ArticleVO();
+        // article.setImages(convertImagesJSONToList(rs.getString("images")));
+        article.setImagesJSON(rs.getString("images"));
+        article.setArticleAlias(rs.getString("alias"));
+        article.setArticleId(rs.getLong("id"));
+        article.setArticleName(rs.getString("title"));
+        article.setCreatedOn(rs.getString("created"));
+        article.setModifiedOn(rs.getString("modified"));
+        article.setCreatedBy(rs.getString("created_by"));
         return article;
     }
 
