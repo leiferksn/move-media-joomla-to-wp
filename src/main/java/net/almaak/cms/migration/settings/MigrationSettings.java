@@ -7,8 +7,28 @@ package net.almaak.cms.migration.settings;
  * @version %I%, %G%
  */
 
-public abstract class MigrationSettings {
+public class MigrationSettings {
 
+    private static MigrationSettings instance = null;
 
+    private String ftpServer;
 
+    public static MigrationSettings getInstance() {
+        if(instance == null) {
+            instance = new MigrationSettings();
+        }
+        return instance;
+    }
+
+    private void MigrationSettings () {
+        // private constructor
+    }
+
+    public String getFtpServer() {
+        return ftpServer;
+    }
+
+    public void setFtpServer(String ftpServer) {
+        this.ftpServer = ftpServer;
+    }
 }

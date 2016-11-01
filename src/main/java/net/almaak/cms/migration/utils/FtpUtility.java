@@ -1,6 +1,8 @@
 package net.almaak.cms.migration.utils;
 
 
+import net.almaak.cms.migration.settings.MediaMigrationSettings;
+import net.almaak.cms.migration.settings.MigrationSettings;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import sun.net.ftp.FtpProtocolException;
@@ -17,7 +19,6 @@ import java.util.List;
  */
 public class FtpUtility {
     // TODO how to pass the ftp address as user input parameter?
-    private String ftpResource = null;
     private static FtpUtility instance = null;
     private FTPClient ftpClient = null;
     private static final int CONNECTION_TIMEOUT = 3000;
@@ -32,12 +33,17 @@ public class FtpUtility {
     private FtpUtility() {
         try {
             FTPClient ftpClient = new FTPClient();
-            ftpClient.connect(ftpResource);
+            // TODO how to test this static thing !?
+            ftpClient.connect(MigrationSettings.getInstance().getFtpServer());
             ftpClient.setConnectTimeout(CONNECTION_TIMEOUT);
         } catch (Exception e) {
             // TODO set different messages for the different types of exceptions - host not found, etc.
             throw new RuntimeException(e);
         }
+    }
+
+    public byte[] retrieveFileFromFtpResource(String ftpPath) {
+        return null;
     }
 
     public List<String> retrieveFileListFromFtpResource(String ftpPath) {

@@ -16,6 +16,7 @@ public class Image extends Media {
     private String imageAlt;
     private byte[] imageData;
     private ImageRole imageRole;
+    private Article article;
 
 
     public Image (String aImagePath,
@@ -71,5 +72,13 @@ public class Image extends Media {
 
     public void setImageAlt(String imageAlt) {
         this.imageAlt = imageAlt;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }

@@ -2,23 +2,22 @@ package net.almaak.cms.migration.service;
 
 
 import net.almaak.cms.migration.dao.entities.Image;
+import net.almaak.cms.migration.settings.MigrationSettings;
 import net.almaak.cms.migration.utils.FtpUtility;
 
 import java.util.List;
 
 public class ImageLoaderServiceImpl implements ImageLoaderService {
 
-
     /**
-     * Should be transactional
+     * Loads image data from ftp given a path
      *
-     * @param fileName
-     * @param remoteRessource
+     * @param fileName relative path to the file
      * @return
      */
     @Override
-    public Image loadImageByFileNameFromFTP(String fileName, String remoteRessource) {
-        return null;
+    public byte[] loadImageByFileNameFromFTP(String fileName) {
+        return FtpUtility.getInstance().retrieveFileFromFtpResource(fileName);
     }
 
     @Override

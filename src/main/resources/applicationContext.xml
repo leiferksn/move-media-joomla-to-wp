@@ -5,6 +5,12 @@
              xsi:schemaLocation="http://www.springframework.org/schema/beans
                                 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
+    <beans:bean id="articlePopulationService" class="net.almaak.cms.migration.service.ArticlePopulationServiceImpl">
+        <beans:property name="imageLoaderService`" ref="imageLoaderService"/>
+    </beans:bean>
+
+    <beans:bean id="imageLoaderService" class="net.almaak.cms.migration.service.ImageLoaderServiceImpl"/>
+
     <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <beans:property name="url" value="jdbc:mysql://localhost:8889/mydb"/>

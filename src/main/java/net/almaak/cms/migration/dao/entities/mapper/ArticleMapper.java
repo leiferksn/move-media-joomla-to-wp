@@ -32,25 +32,4 @@ public class ArticleMapper implements RowMapper {
         article.setCreatedBy(rs.getString("created_by"));
         return article;
     }
-
-    private List<Image> convertImagesJSONToList(String imagesJSON) throws IOException {
-        List<Image> imageList = mapImageVOToImage(new ObjectMapper().readValue(imagesJSON, ImageVO.class));
-        return imageList;
-    }
-
-    private List<Image> mapImageVOToImage(ImageVO imageVO) {
-        List<Image> imgList = new ArrayList<Image>();
-
-        Image imgIntro = new Image(imageVO.getImageIntro(), imageVO.getImageIntroCaption(),
-                imageVO.getImageIntroAlt(), ImageRole.INTRO, null);
-
-        imgList.add(imgIntro);
-
-        Image imgFulltext = new Image(imageVO.getImageFullText(), imageVO.getImageFulltextCaption(),
-                imageVO.getImageFulltextAlt(), ImageRole.FULLTEXT, null);
-
-        imgList.add(imgFulltext);
-        return imgList;
-
-    }
 }
