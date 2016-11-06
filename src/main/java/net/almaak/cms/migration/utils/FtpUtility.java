@@ -18,23 +18,13 @@ import java.util.List;
  * @version %I%, %G%
  */
 public class FtpUtility {
-    // TODO how to pass the ftp address as user input parameter?
-    private static FtpUtility instance = null;
     private FTPClient ftpClient = null;
     private static final int CONNECTION_TIMEOUT = 3000;
 
-    public static FtpUtility getInstance(){
-        if(instance == null){
-            return new FtpUtility();
-        }
-        return instance;
-    }
-
-    private FtpUtility() {
+    public FtpUtility(String ftpServer) {
         try {
             FTPClient ftpClient = new FTPClient();
-            // TODO how to test this static thing !?
-            ftpClient.connect(MigrationSettings.getInstance().getFtpServer());
+            ftpClient.connect(ftpServer);
             ftpClient.setConnectTimeout(CONNECTION_TIMEOUT);
         } catch (Exception e) {
             // TODO set different messages for the different types of exceptions - host not found, etc.

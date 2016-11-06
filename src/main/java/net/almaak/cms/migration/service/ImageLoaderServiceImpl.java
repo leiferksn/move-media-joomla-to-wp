@@ -17,7 +17,8 @@ public class ImageLoaderServiceImpl implements ImageLoaderService {
      */
     @Override
     public byte[] loadImageByFileNameFromFTP(String fileName) {
-        return FtpUtility.getInstance().retrieveFileFromFtpResource(fileName);
+        FtpUtility ftpUtility = new FtpUtility(MigrationSettings.getInstance().getFtpServer());
+        return ftpUtility.retrieveFileFromFtpResource(fileName);
     }
 
     @Override
