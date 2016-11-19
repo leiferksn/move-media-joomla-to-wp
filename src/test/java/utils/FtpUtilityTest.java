@@ -2,15 +2,23 @@ package utils;
 
 import net.almaak.cms.migration.utils.FtpUtility;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
 import java.security.MessageDigest;
+import java.util.Properties;
 
-@Ignore
 public class FtpUtilityTest {
 
+    private Properties properties;
+
+    @Before
+    public void init() throws IOException {
+        properties = new Properties();
+        properties.load(this.getClass().getClassLoader().getResourceAsStream("test.properties"));
+    }
 
     @Test
     public void shouldReturnDirectoryList(){
@@ -20,12 +28,13 @@ public class FtpUtilityTest {
     @Test
     public void shouldReturnFile() throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
-        String filePath = "images/smog/smog_m.png";
-        byte[] shouldBytes = retrieveBytesFromResource(filePath);
+        byte[] shouldBytes = retrieveBytesFromResource(properties.getProperty("test.local.file"));
         String checksumShould = createFileChecksum(md, shouldBytes);
 
-        FtpUtility ftpUtility = new FtpUtility("xoxoxo");
-        byte[] bytes = ftpUtility.retrieveFileFromFtpResource(filePath);
+        FtpUtility ftpUtility = new FtpUtility(properties.getProperty("test.ftp.server"),
+                properties.getProperty("test.ftp.un"), properties.getProperty("test.ftp.pw"));
+        byte[] bytes = ftpUtility.retrieveFileFromFtpResource(properties.getProperty("test.ftp.file"));
+        ftpUtility.destroyConnection();
         String checksumIs = createFileChecksum(md, bytes);
 
         Assert.assertNotNull(bytes);
@@ -33,6 +42,9 @@ public class FtpUtilityTest {
     }
 
     private String createFileChecksum(MessageDigest md, final byte[] inputBytes) throws IOException {
+        if(inputBytes == null) {
+            return null;
+        }
         ByteArrayInputStream bis = new ByteArrayInputStream(inputBytes);
         byte[] chunk = new byte[2048];
         int byteCount = 0;

@@ -39,7 +39,7 @@ public class ArticlePopulationServiceImpl implements ArticlePopulationService {
         return imageList;
     }
 
-    private List<Image> mapImageVOToImage(ImageVO imageVO, Article article) {
+    private List<Image> mapImageVOToImage(ImageVO imageVO, Article article) throws IOException {
         List<Image> imgList = new ArrayList<Image>();
 
         Image imgIntro = new Image(imageVO.getImageIntro(), imageVO.getImageIntroCaption(),
@@ -56,7 +56,7 @@ public class ArticlePopulationServiceImpl implements ArticlePopulationService {
 
     }
 
-    private byte[] retrieveImageData(final String imagePath) {
+    private byte[] retrieveImageData(final String imagePath) throws IOException {
         byte[] bytes = null;
         if (imagePath != null) {
             bytes = imageLoaderService.loadImageByFileNameFromFTP(imagePath);

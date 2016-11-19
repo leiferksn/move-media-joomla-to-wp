@@ -5,6 +5,7 @@ import net.almaak.cms.migration.dao.entities.Image;
 import net.almaak.cms.migration.settings.MigrationSettings;
 import net.almaak.cms.migration.utils.FtpUtility;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ImageLoaderServiceImpl implements ImageLoaderService {
@@ -16,8 +17,9 @@ public class ImageLoaderServiceImpl implements ImageLoaderService {
      * @return
      */
     @Override
-    public byte[] loadImageByFileNameFromFTP(String fileName) {
-        FtpUtility ftpUtility = new FtpUtility(MigrationSettings.getInstance().getFtpServer());
+    public byte[] loadImageByFileNameFromFTP(String fileName) throws IOException {
+        MigrationSettings ms = MigrationSettings.getInstance();
+        FtpUtility ftpUtility = new FtpUtility(ms.getFtpServer(), ms.getFtpUsername(), ms.getFtpPassword());
         return ftpUtility.retrieveFileFromFtpResource(fileName);
     }
 

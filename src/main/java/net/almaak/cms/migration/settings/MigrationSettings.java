@@ -21,6 +21,8 @@ public class MigrationSettings {
     private static MigrationSettings instance = null;
 
     private String ftpServer;
+    private String ftpUsername;
+    private String ftpPassword;
 
     public static MigrationSettings getInstance() {
         return Holder.instance;
@@ -28,6 +30,14 @@ public class MigrationSettings {
 
     private void MigrationSettings () {
         // private constructor
+    }
+
+    public String getFtpUsername() {
+        return ftpUsername;
+    }
+
+    public String getFtpPassword() {
+        return ftpPassword;
     }
 
     public String getFtpServer() {
