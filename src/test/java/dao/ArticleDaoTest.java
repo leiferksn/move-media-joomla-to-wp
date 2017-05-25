@@ -1,7 +1,6 @@
 package dao;
 
 import net.almaak.cms.migration.dao.ArticleDAO;
-import net.almaak.cms.migration.dao.entities.Article;
 import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
 import org.junit.After;
 import org.junit.Assert;

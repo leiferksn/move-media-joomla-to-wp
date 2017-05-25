@@ -1,15 +1,16 @@
 package net.almaak.cms.migration.utils;
 
 
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
-import net.almaak.cms.migration.settings.MediaMigrationSettings;
-import net.almaak.cms.migration.settings.MigrationSettings;
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import sun.net.ftp.FtpProtocolException;
+import net.schmizz.sshj.SSHClient;
+import net.schmizz.sshj.sftp.FileMode;
+import net.schmizz.sshj.sftp.RemoteResourceInfo;
+import net.schmizz.sshj.transport.verification.HostKeyVerifier;
+import net.schmizz.sshj.xfer.InMemoryDestFile;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +21,30 @@ import java.util.List;
  * @version %I%, %G%
  */
 public class FtpUtility {
-    private FTPClient ftpClient = null;
+    private SSHClient ftpClient = null;
     private static final int CONNECTION_TIMEOUT = 3000;
+    private class NullHostKeyVerifier implements HostKeyVerifier {
+        @Override
+        public boolean verify(String arg0, int arg1, PublicKey arg2) {
+            return true;
+        }
+    }
+
+    private class InMemoryFile extends InMemoryDestFile {
+        private ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        @Override
+        public OutputStream getOutputStream() throws IOException {
+            return bos;
+        }
+    }
 
     public FtpUtility(String ftpServer, String userName, String passWord) {
         try {
-            ftpClient = new FTPClient();
-            ftpClient.setDefaultPort(21);
+            ftpClient = new SSHClient();
+            ftpClient.addHostKeyVerifier(new NullHostKeyVerifier());
             ftpClient.connect(ftpServer);
-            ftpClient.login(userName, passWord);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            ftpClient.authPassword(userName, passWord);
             ftpClient.setConnectTimeout(CONNECTION_TIMEOUT);
         } catch (Exception e) {
             // TODO set different messages for the different types of exceptions - host not found, etc.
@@ -41,17 +55,17 @@ public class FtpUtility {
     public byte[] retrieveFileFromFtpResource(final String ftpPath) throws IOException {
         byte[] fileBytes = null;
         // String downloadedFile = "/tmp/downloadedFile" + Integer.toString(ftpPath.hashCode();
-        ByteArrayOutputStream fos = new ByteArrayOutputStream();
-        boolean ok = ftpClient.retrieveFile(ftpPath, fos);
-        fos.close();
-        if (ok) {
-            fileBytes = fos.toByteArray();
+        InMemoryDestFile inMemoryDestFile = new InMemoryFile();
+        // ForceCommand internal-sftp in the config limits users to use sftp only.
+        ftpClient.newSFTPClient().get(ftpPath, inMemoryDestFile);
+        if (inMemoryDestFile != null) {
+            fileBytes = ((ByteArrayOutputStream)inMemoryDestFile.getOutputStream()).toByteArray();
         }
+        inMemoryDestFile.getOutputStream().close();
         return fileBytes;
     }
 
     public void destroyConnection() throws IOException {
-        ftpClient.logout();
         ftpClient.disconnect();
     }
 
@@ -61,11 +75,11 @@ public class FtpUtility {
             if (!ftpClient.isConnected()) {
             // TODO implement reconnect
             }
-            FTPFile[] ftpFiles =  ftpClient.listFiles(ftpPath);
+            List<RemoteResourceInfo> ftpFiles =  ftpClient.newSFTPClient().ls(ftpPath);
             fileList = new ArrayList<String>();
-            for(FTPFile ftpFile : ftpFiles){
-                int type = ftpFile.getType();
-                if(type == 0) {
+            for(RemoteResourceInfo ftpFile : ftpFiles){
+                FileMode.Type type = ftpFile.getAttributes().getType();
+                if(type.equals(FileMode.Type.REGULAR)) {
                     fileList.add(ftpFile.getName());
                 }
             }
