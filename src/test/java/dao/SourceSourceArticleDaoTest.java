@@ -1,7 +1,7 @@
 package dao;
 
-import net.almaak.cms.migration.dao.ArticleDAO;
-import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
+import net.almaak.cms.migration.dao.SourceArticleDAO;
+import net.almaak.cms.migration.dao.entities.mapper.vo.SourceArticleVO;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,16 +14,16 @@ import java.util.List;
 /**
  * Created by leiferksn on 6/5/16.
  */
-public class ArticleDaoTest {
+public class SourceSourceArticleDaoTest {
 
     private ApplicationContext applicationContext = null;
 
-    private ArticleDAO articleDAO;
+    private SourceArticleDAO sourceArticleDAO;
 
     @Before
     public void setUp(){
         applicationContext = new ClassPathXmlApplicationContext("/applicationContext-test.xml");
-        articleDAO = (ArticleDAO) applicationContext.getBean("imageReferenceDao");
+        sourceArticleDAO = (SourceArticleDAO) applicationContext.getBean("imageReferenceDao");
     }
 
     @After
@@ -33,14 +33,14 @@ public class ArticleDaoTest {
 
     @Test
     public void shouldReturnAllImageReferences(){
-        List<ArticleVO> articles =  articleDAO.loadAll();
+        List<SourceArticleVO> articles =  sourceArticleDAO.loadAll();
         Assert.assertTrue(articles != null);
         Assert.assertTrue(articles.size() > 0);
         boolean checkImagesExist = false;
         boolean checkTitleExists = true;
         boolean checkAliasExists = true;
         boolean checkIdExists = true;
-        for (ArticleVO article : articles) {
+        for (SourceArticleVO article : articles) {
             checkIdExists = checkMemberValidity(article.getArticleId().toString());
             if(!checkIdExists){
                 break;

@@ -11,15 +11,26 @@
 
     <beans:bean id="imageLoaderService" class="net.almaak.cms.migration.service.ImageLoaderServiceImpl"/>
 
-    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <beans:bean id="sourceDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <beans:property name="url" value="jdbc:mysql://localhost:8889/mydb"/>
         <beans:property name="username" value="mydbuser"/>
         <beans:property name="password" value="mydbpwd"/>
     </beans:bean>
 
-    <beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <beans:property name="dataSource" ref="dataSource"/>
+    <beans:bean id="targetDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <beans:property name="url" value="jdbc:mysql://localhost:8889/mytargetdb"/>
+        <beans:property name="username" value="mydbuser"/>
+        <beans:property name="password" value="mydbpwd"/>
+    </beans:bean>
+
+    <beans:bean id="sourceJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <beans:property name="dataSource" ref="sourceDataSource"/>
+    </beans:bean>
+
+    <beans:bean id="targetJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <beans:property name="dataSource" ref="targetDataSource"/>
     </beans:bean>
 
 

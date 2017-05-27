@@ -7,7 +7,7 @@ package net.almaak.cms.migration.utils;
 public enum ImageRole {
 
     INTRO("Intro", "The thumbnail that appears in teasers"),
-    FULLTEXT("Fulltext", "The pictire that appears in the head of an article");
+    FULLTEXT("Fulltext", "The picture that appears in the head of an article");
 
     private String role;
     private String comment;

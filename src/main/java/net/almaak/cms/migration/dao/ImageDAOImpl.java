@@ -1,6 +1,6 @@
 package net.almaak.cms.migration.dao;
 
-import net.almaak.cms.migration.dao.entities.Image;
+import net.almaak.cms.migration.dao.entities.SourceImage;
 
 import java.io.File;
 
@@ -8,7 +8,7 @@ import java.io.File;
 public class ImageDAOImpl implements ImageDAO {
 
     @Override
-    public Image retrieveImageFromDirectory(File directory, String fileName) {
+    public SourceImage retrieveImageFromDirectory(File directory, String fileName) {
         return null;
     }
 }

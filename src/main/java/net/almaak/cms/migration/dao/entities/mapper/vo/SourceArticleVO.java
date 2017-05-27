@@ -1,15 +1,11 @@
-package net.almaak.cms.migration.dao.entities;
-
-import java.util.List;
+package net.almaak.cms.migration.dao.entities.mapper.vo;
 
 /**
- * Represents an image reference in article
- *
- * @author leiferksn
- * @version %I%, %G%
+ * Created by leiferksn on 11/1/16.
  *
  */
-public class Article {
+
+public class SourceArticleVO {
 
     private String articleAlias;
     private String articleName;
@@ -17,26 +13,30 @@ public class Article {
     private String createdOn;
     private String modifiedOn;
     private String createdBy;
-    private List<Image> images;
+    private String imagesJSON;
+
+    public String getArticleAlias() {
+        return articleAlias;
+    }
 
     public void setArticleAlias(String articleAlias) {
         this.articleAlias = articleAlias;
+    }
+
+    public String getArticleName() {
+        return articleName;
     }
 
     public void setArticleName(String articleName) {
         this.articleName = articleName;
     }
 
+    public Long getArticleId() {
+        return articleId;
+    }
+
     public void setArticleId(Long articleId) {
         this.articleId = articleId;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    public String getArticleAlias() {
-        return articleAlias;
     }
 
     public String getCreatedOn() {
@@ -63,15 +63,11 @@ public class Article {
         this.createdBy = createdBy;
     }
 
-    public String getArticleName() {
-        return articleName;
+    public String getImagesJSON() {
+        return imagesJSON;
     }
 
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public List<Image> getImages() {
-        return images;
+    public void setImagesJSON(String imagesJSON) {
+        this.imagesJSON = imagesJSON;
     }
 }

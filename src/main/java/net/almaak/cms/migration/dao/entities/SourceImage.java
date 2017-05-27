@@ -9,21 +9,21 @@ import net.almaak.cms.migration.utils.ImageRole;
  * @version %I%, %G%
  *
  */
-public class Image extends Media {
+public class SourceImage extends Media {
 
     private String imagePath;
     private String imageCaption;
     private String imageAlt;
     private byte[] imageData;
     private ImageRole imageRole;
-    private Article article;
+    private SourceArticle sourceArticle;
 
 
-    public Image (String aImagePath,
-                  String aImageCaption,
-                  String aImageAlt,
-                  ImageRole aImageRole,
-                  byte[] aImageData) {
+    public SourceImage(String aImagePath,
+                       String aImageCaption,
+                       String aImageAlt,
+                       ImageRole aImageRole,
+                       byte[] aImageData) {
         this.imagePath = aImagePath;
         this.imageCaption = aImageCaption;
         this.imageAlt = aImageAlt;
@@ -74,11 +74,11 @@ public class Image extends Media {
         this.imageAlt = imageAlt;
     }
 
-    public Article getArticle() {
-        return article;
+    public SourceArticle getSourceArticle() {
+        return sourceArticle;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setSourceArticle(SourceArticle sourceArticle) {
+        this.sourceArticle = sourceArticle;
     }
 }

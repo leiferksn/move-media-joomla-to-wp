@@ -1,7 +1,7 @@
 package net.almaak.cms.migration.service;
 
 
-import net.almaak.cms.migration.dao.entities.Image;
+import net.almaak.cms.migration.dao.entities.SourceImage;
 import net.almaak.cms.migration.settings.MigrationSettings;
 import net.almaak.cms.migration.utils.FtpUtility;
 
@@ -24,7 +24,7 @@ public class ImageLoaderServiceImpl implements ImageLoaderService {
     }
 
     @Override
-    public List<Image> loadImagesFromFileSystemPath(String fsPath, long limit) {
+    public List<SourceImage> loadImagesFromFileSystemPath(String fsPath, long limit) {
         /*
         List<String> fileList = FtpUtility.getInstance().retrieveFileListFromFtpResource(fsPath);
         */

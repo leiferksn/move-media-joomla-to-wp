@@ -1,9 +1,9 @@
 package net.almaak.cms.migration.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.almaak.cms.migration.dao.entities.Article;
-import net.almaak.cms.migration.dao.entities.Image;
-import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
+import net.almaak.cms.migration.dao.entities.SourceArticle;
+import net.almaak.cms.migration.dao.entities.SourceImage;
+import net.almaak.cms.migration.dao.entities.mapper.vo.SourceArticleVO;
 import net.almaak.cms.migration.dao.entities.mapper.vo.ImageVO;
 import net.almaak.cms.migration.utils.ImageRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,35 +21,35 @@ public class ArticlePopulationServiceImpl implements ArticlePopulationService {
     private ImageLoaderService imageLoaderService;
 
     @Override
-    public Article populateArticle(ArticleVO articleVO) throws IOException {
-        Article article = new Article();
+    public SourceArticle populateArticle(SourceArticleVO sourceArticleVO) throws IOException {
+        SourceArticle sourceArticle = new SourceArticle();
 
-        article.setArticleId(articleVO.getArticleId());
-        article.setArticleAlias(articleVO.getArticleAlias());
-        article.setArticleName(articleVO.getArticleName());
-        article.setCreatedBy(articleVO.getCreatedBy());
-        article.setCreatedOn(articleVO.getCreatedOn());
-        article.setModifiedOn(articleVO.getModifiedOn());
-        article.setImages(convertImagesJSONToList(articleVO.getImagesJSON(), article));
-        return article;
+        sourceArticle.setArticleId(sourceArticleVO.getArticleId());
+        sourceArticle.setArticleAlias(sourceArticleVO.getArticleAlias());
+        sourceArticle.setArticleName(sourceArticleVO.getArticleName());
+        sourceArticle.setCreatedBy(sourceArticleVO.getCreatedBy());
+        sourceArticle.setCreatedOn(sourceArticleVO.getCreatedOn());
+        sourceArticle.setModifiedOn(sourceArticleVO.getModifiedOn());
+        sourceArticle.setSourceImages(convertImagesJSONToList(sourceArticleVO.getImagesJSON(), sourceArticle));
+        return sourceArticle;
     }
 
-    private List<Image> convertImagesJSONToList(String imagesJSON, Article article) throws IOException {
-        List<Image> imageList = mapImageVOToImage(new ObjectMapper().readValue(imagesJSON, ImageVO.class), article);
-        return imageList;
+    private List<SourceImage> convertImagesJSONToList(String imagesJSON, SourceArticle sourceArticle) throws IOException {
+        List<SourceImage> sourceImageList = mapImageVOToImage(new ObjectMapper().readValue(imagesJSON, ImageVO.class), sourceArticle);
+        return sourceImageList;
     }
 
-    private List<Image> mapImageVOToImage(ImageVO imageVO, Article article) throws IOException {
-        List<Image> imgList = new ArrayList<Image>();
+    private List<SourceImage> mapImageVOToImage(ImageVO imageVO, SourceArticle sourceArticle) throws IOException {
+        List<SourceImage> imgList = new ArrayList<SourceImage>();
 
-        Image imgIntro = new Image(imageVO.getImageIntro(), imageVO.getImageIntroCaption(),
+        SourceImage imgIntro = new SourceImage(imageVO.getImageIntro(), imageVO.getImageIntroCaption(),
                 imageVO.getImageIntroAlt(), ImageRole.INTRO, retrieveImageData(imageVO.getImageIntro()));
-        imgIntro.setArticle(article);
+        imgIntro.setSourceArticle(sourceArticle);
         imgList.add(imgIntro);
 
-        Image imgFulltext = new Image(imageVO.getImageFullText(), imageVO.getImageFulltextCaption(),
+        SourceImage imgFulltext = new SourceImage(imageVO.getImageFullText(), imageVO.getImageFulltextCaption(),
                 imageVO.getImageFulltextAlt(), ImageRole.FULLTEXT, retrieveImageData(imageVO.getImageFullText()));
-        imgFulltext.setArticle(article);
+        imgFulltext.setSourceArticle(sourceArticle);
         imgList.add(imgFulltext);
 
         return imgList;

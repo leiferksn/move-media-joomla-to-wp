@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by leiferksn on 11/1/16.
  */
-public class ArticlePopulationServiceTest {
+public class SourceArticlePopulationServiceTest {
 
     @Test
     public void shouldPopulateArticleWithImages() {

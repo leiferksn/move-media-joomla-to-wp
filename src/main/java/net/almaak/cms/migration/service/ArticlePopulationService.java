@@ -1,7 +1,7 @@
 package net.almaak.cms.migration.service;
 
-import net.almaak.cms.migration.dao.entities.Article;
-import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
+import net.almaak.cms.migration.dao.entities.SourceArticle;
+import net.almaak.cms.migration.dao.entities.mapper.vo.SourceArticleVO;
 
 import java.io.IOException;
 
@@ -10,6 +10,6 @@ import java.io.IOException;
  */
 public interface ArticlePopulationService {
 
-    Article populateArticle(final ArticleVO articleVO) throws IOException;
+    SourceArticle populateArticle(final SourceArticleVO sourceArticleVO) throws IOException;
 
 }

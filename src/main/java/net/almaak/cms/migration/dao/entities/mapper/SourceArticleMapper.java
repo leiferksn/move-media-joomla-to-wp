@@ -1,28 +1,21 @@
 package net.almaak.cms.migration.dao.entities.mapper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import net.almaak.cms.migration.dao.entities.Image;
-import net.almaak.cms.migration.dao.entities.mapper.vo.ArticleVO;
-import net.almaak.cms.migration.dao.entities.mapper.vo.ImageVO;
-import net.almaak.cms.migration.utils.ImageRole;
+import net.almaak.cms.migration.dao.entities.mapper.vo.SourceArticleVO;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class ArticleMapper implements RowMapper {
+public class SourceArticleMapper implements RowMapper {
 
-    private static Logger log = Logger.getLogger(ArticleMapper.class);
+    private static Logger log = Logger.getLogger(SourceArticleMapper.class);
 
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        ArticleVO article = new ArticleVO();
-        // article.setImages(convertImagesJSONToList(rs.getString("images")));
+        SourceArticleVO article = new SourceArticleVO();
+        // article.setSourceImages(convertImagesJSONToList(rs.getString("images")));
         article.setImagesJSON(rs.getString("images"));
         article.setArticleAlias(rs.getString("alias"));
         article.setArticleId(rs.getLong("id"));

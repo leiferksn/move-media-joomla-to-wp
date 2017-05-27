@@ -1,7 +1,7 @@
 package net.almaak.cms.migration.dao;
 
 
-import net.almaak.cms.migration.dao.entities.Image;
+import net.almaak.cms.migration.dao.entities.SourceImage;
 
 import java.io.File;
 
@@ -14,6 +14,6 @@ import java.io.File;
  */
 public interface ImageDAO {
 
-    Image retrieveImageFromDirectory(final File directory, final String fileName);
+    SourceImage retrieveImageFromDirectory(final File directory, final String fileName);
 
 }
