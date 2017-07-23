@@ -1,7 +1,16 @@
 # move-media-joomla-to-wp
 
-The Spring Boot Application transfers Joomla 3.x content into Wordpress.
+The application migrates Joomla 3.x content to Wordpress. 
 
 ## Structure
 
-Classic DAO layer with a Service layer to extract content from Jooomla database structure and insert data to WordPress data repository.
+The application uses Spring Boot. It consist of a classic DAO layer with a Service layer to extract content from Joomla database structure and insert data to WordPress data repository. Services are called by Spring Boot main class. 
+
+## Buidling
+
+Gradle is used as a build tool
+
+## Data
+
+For running the integration tests and executing the migration two docker mysql images are used.   
+
