@@ -1,4 +1,4 @@
-# move-media-joomla-to-wp
+# move-joomla-to-wp
 
 The application migrates Joomla 3.x content to Wordpress. 
 
