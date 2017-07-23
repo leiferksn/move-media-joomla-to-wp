@@ -12,5 +12,5 @@ Gradle is used as a build tool
 
 ## Data
 
-For running the integration tests and executing the migration two docker mysql images are used.   
+For running the integration tests and executing the migration, two docker mysql images are used - one with the dump of the source system and one with "basic" configuration of WordPress database.
 
